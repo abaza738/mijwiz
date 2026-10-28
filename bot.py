@@ -341,9 +341,7 @@ async def queue(interaction: discord.Interaction):
     await interaction.response.send_message("\n".join(lines))
 
 
-@bot.tree.command(description="Stop playback, clear the queue and leave the voice channel")
-@app_commands.guild_only()
-async def stop(interaction: discord.Interaction):
+async def leave(interaction: discord.Interaction, reply: str) -> None:
     player = players.get(interaction.guild.id)
     if player:
         player.stop()  # its cleanup disconnects
@@ -351,7 +349,19 @@ async def stop(interaction: discord.Interaction):
         await interaction.guild.voice_client.disconnect(force=True)
     else:
         return await interaction.response.send_message("I'm not in a voice channel.", ephemeral=True)
-    await interaction.response.send_message("Stopped.")
+    await interaction.response.send_message(reply)
+
+
+@bot.tree.command(description="Stop playback, clear the queue and leave the voice channel")
+@app_commands.guild_only()
+async def stop(interaction: discord.Interaction):
+    await leave(interaction, "Stopped.")
+
+
+@bot.tree.command(description="Leave the voice channel and clear the queue")
+@app_commands.guild_only()
+async def disconnect(interaction: discord.Interaction):
+    await leave(interaction, "Disconnected.")
 
 
 @bot.event

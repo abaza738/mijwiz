@@ -25,7 +25,7 @@ Slash commands are registered on startup; if they don't show up right away, rest
 | `/skip` | Skip the current track |
 | `/pause` / `/resume` | Pause / resume |
 | `/queue` | Show what's playing and up next |
-| `/stop` | Clear the queue and leave |
+| `/stop` / `/disconnect` | Clear the queue and leave |
 
 The bot leaves on its own after 5 minutes with an empty queue, or when everyone leaves the channel.
 
