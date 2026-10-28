@@ -1,0 +1,3 @@
+discord.py[voice]==2.7.1
+# Not pinned: YouTube changes often; the container also upgrades yt-dlp on every start.
+yt-dlp[default,deno]
